@@ -135,6 +135,7 @@ func CountBytes() int {
 	} else {
 		in = os.Stdin
 	}
+
 	
 	var totalBytes int
 
