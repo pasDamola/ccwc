@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"io"
 	"os"
@@ -10,7 +11,22 @@ import (
 
 
 
-func CountChars(in io.Reader) int {
+func CountChars() int {
+	var in io.Reader
+	var filename string
+
+	if filename = flag.Arg(0); filename != "" {
+		f, err := os.Open(filename)
+		if err != nil {
+			fmt.Println("error opening file: err:", err)
+			os.Exit(1)
+		}
+		defer f.Close()
+
+		in = f
+	} else {
+		in = os.Stdin
+	}
 	// A scanner is used to read text from a Reader (such as files)
 	scanner := bufio.NewScanner(in)
 
@@ -31,7 +47,22 @@ func CountChars(in io.Reader) int {
 }
 
 
-func CountLines(in io.Reader) int {
+func CountLines() int {
+	var in io.Reader
+	var filename string
+
+	if filename = flag.Arg(0); filename != "" {
+		f, err := os.Open(filename)
+		if err != nil {
+			fmt.Println("error opening file: err:", err)
+			os.Exit(1)
+		}
+		defer f.Close()
+
+		in = f
+	} else {
+		in = os.Stdin
+	}
 	scanner := bufio.NewScanner(in)
 	// Count the number of lines
 	lineCount := 0
@@ -49,8 +80,22 @@ func CountLines(in io.Reader) int {
 }
 
 
-func CountWords(in io.Reader) int {	
-	// Create a scanner to read the file line by line
+func CountWords() int {	
+	var in io.Reader
+	var filename string
+
+	if filename = flag.Arg(0); filename != "" {
+		f, err := os.Open(filename)
+		if err != nil {
+			fmt.Println("error opening file: err:", err)
+			os.Exit(1)
+		}
+		defer f.Close()
+
+		in = f
+	} else {
+		in = os.Stdin
+	}
 	scanner := bufio.NewScanner(in)
 
 
@@ -74,8 +119,22 @@ func CountWords(in io.Reader) int {
 }
 
 
-func CountBytes(in io.Reader) int {
-	// Get the file size
+func CountBytes() int {
+	var in io.Reader
+	var filename string
+
+	if filename = flag.Arg(0); filename != "" {
+		f, err := os.Open(filename)
+		if err != nil {
+			fmt.Println("error opening file: err:", err)
+			os.Exit(1)
+		}
+		defer f.Close()
+
+		in = f
+	} else {
+		in = os.Stdin
+	}
 	
 	var totalBytes int
 
