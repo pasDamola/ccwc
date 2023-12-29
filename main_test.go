@@ -34,9 +34,6 @@ func TestMain(m *testing.M) {
 	os.Exit(result)
 }
 
-func TestCountLines(t *testing.T) {
-
-}
 
 func TestWCCLI(t *testing.T) {
 
